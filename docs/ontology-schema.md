@@ -1,6 +1,7 @@
 # 本体格式（草案 v0）
 
-> `dsh-medical-ontology` 的交付物，`dsh-medical-eval` 等下游读取。状态：**草案，待定稿**。
+> `dsh-medical-ontology` 的交付物，`dsh-medical-eval` 等下游读取。状态：**草案；v0 已按本文实现（`lib/package/write.js`，manifest.format = `clinical-ontology/0`），尚未定稿**。实现与本文有出入时以实现为准，并回写本文。
+> v0 的出入：`concurrents.jsonl` 为空（伴发事件需模型＋医生）；`attributions` 只有结构推出的混杂候选，`shares[].share` 与 `separability` 为 null；`decisions.linkText` 与 `nextMain.reasonCategory` 为 null；人工裁定存 `_records/review.json`。
 > 所有对象都带公共字段（见末尾）。引用事件包里的对象一律用其稳定编号，不复制原文。
 
 ## 文件

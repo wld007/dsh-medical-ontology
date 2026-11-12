@@ -1,0 +1,78 @@
+{
+  "format": "event-package/0",
+  "producer": "dsh-medical-event@0.1.0",
+  "runId": "demo",
+  "patient": "DEMO-0001",
+  "upstream": {
+    "fictional": true
+  },
+  "rulepacks": [
+    {
+      "id": "zj-regional",
+      "layer": "source",
+      "version": "0.1.0",
+      "basedOn": {
+        "工序1": "v1.2"
+      }
+    },
+    {
+      "id": "general",
+      "layer": "general",
+      "version": "0.1.0",
+      "basedOn": {
+        "工序2": "v2.2",
+        "工序3": "v1.5",
+        "工序4": "v1.0"
+      }
+    },
+    {
+      "id": "hemodialysis",
+      "layer": "specialty",
+      "version": "0.1.0",
+      "basedOn": {
+        "工序2": "v2.2",
+        "工序3": "v1.5"
+      }
+    }
+  ],
+  "asOf": null,
+  "person": {
+    "birth": "1956-03-12",
+    "sex": "女性"
+  },
+  "counts": {
+    "fragments": 145,
+    "encounters": 21,
+    "mentions": 398,
+    "events": 256,
+    "findings": 0
+  },
+  "gates": {
+    "①": {
+      "pass": true,
+      "failures": {},
+      "samples": []
+    },
+    "②": {
+      "pass": true,
+      "fallbackRate": 0.11307420494699646,
+      "fallback": 32,
+      "documentMentions": 283,
+      "sampling": "待人工抽样"
+    },
+    "③": {
+      "pass": true,
+      "problems": {},
+      "samples": []
+    },
+    "④": {
+      "pass": true,
+      "problems": {}
+    }
+  },
+  "review": null,
+  "createdAt": "2026-11-12T00:00:00.000Z",
+  "files": {
+    "compressed": []
+  }
+}

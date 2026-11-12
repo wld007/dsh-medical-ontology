@@ -1,0 +1,9 @@
+- insert:
+    - id: medical-ontology
+      name: 'dsh-medical-ontology'
+      config:
+        # 输出根目录；空 = 输入目录旁的 _medical-ontology
+        outputRoot: ''
+        # 病种规则包（rules/specialty/<名>）：问题线词表、主线定义、找线写法
+        specialty: hemodialysis
+        showSidebarEntry: true
