@@ -19,8 +19,15 @@ if (!stateDir || !umd) { console.error('usage: REACT_UMD_DIR=<node_modules> node
 const service = createService({ stateDir })
 
 const page = `<!doctype html><meta charset="utf-8"><title>preview</title>
-<style>html,body,#root{margin:0;height:100%}body{background:#081116}</style>
+<style>html,body,#root{margin:0;height:100%}</style>
 <div id="root"></div>
+<script>
+  // 模拟 DSH 主题变量：?theme=light|dark
+  const th = new URLSearchParams(location.search).get('theme') || 'dark'
+  const vars = th === 'light' ? { '--dsw-alias-bg-base': '#eef1f2', '--dsw-alias-bg-layer-1': '#f6f8f8' } : { '--dsw-alias-bg-base': '#0b0f12', '--dsw-alias-bg-layer-1': '#12171b' }
+  for (const [k, v] of Object.entries(vars)) document.documentElement.style.setProperty(k, v)
+  document.body.style.background = vars['--dsw-alias-bg-base']
+</script>
 <script src="/react.js"></script><script src="/react-dom.js"></script>
 <script>let def = null; window.__ModuleLoader__ = { load(d) { def = d } }</script>
 <script src="/client.js"></script>

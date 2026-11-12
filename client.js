@@ -32,11 +32,14 @@ window.__ModuleLoader__.load({
 
     /* ---------------------------------------------------------------- style */
     const CSS = `
-.mo{--bg:#081116;--panel:#0d1a20;--panel2:#112128;--panel3:#16282f;--line:#1a2c34;--line2:#26404a;--ink:#e2eef0;--ink2:#8ba5ad;--ink3:#58717a;--teal:#22c7c0;--teal2:#7fe9e2;--tealdim:rgba(34,199,192,.14);--ok:#46d17f;--warn:#f5a524;--bad:#f05252;--vio:#a58bff;--blue:#4fb3ff;--mono:"SF Mono","JetBrains Mono",Menlo,monospace;
+.mo{--bg:#081116;--panel:#0d1a20;--panel2:#112128;--panel3:#16282f;--line:#1a2c34;--line2:#26404a;--ink:#e2eef0;--ink2:#8ba5ad;--ink3:#58717a;--teal:#22c7c0;--teal2:#7fe9e2;--tealdim:rgba(34,199,192,.14);--ok:#46d17f;--warn:#f5a524;--bad:#f05252;--bad2:#ff8a8a;--vio:#a58bff;--blue:#4fb3ff;--top:#0f2329;--stA:#13262d;--stB:#0c191e;--stepA:#112228;--stepB:#0c181d;--arrow:#3a5e69;--onteal:#04201f;--mono:"SF Mono","JetBrains Mono",Menlo,monospace;
   height:100%;box-sizing:border-box;background:var(--bg);color:var(--ink);font:12.5px -apple-system,"PingFang SC","Helvetica Neue",sans-serif;display:flex;flex-direction:column;gap:8px;padding:8px 10px 10px;color-scheme:dark;overflow:hidden}
+/* 浅色：跟随 DSH 浅色主题，底色带一点青灰，不用纯白 */
+.mo.light{--bg:color-mix(in srgb,var(--dsw-alias-bg-base,#eef2f3) 84%,#0e9f98);--panel:color-mix(in srgb,var(--dsw-alias-bg-layer-1,#f4f7f7) 92%,#0e9f98);--panel2:color-mix(in srgb,var(--dsw-alias-bg-layer-1,#f4f7f7) 86%,#0e9f98);--panel3:color-mix(in srgb,var(--dsw-alias-bg-layer-1,#f4f7f7) 78%,#0e9f98);--line:#c6d6d9;--line2:#adc3c7;--ink:#14272c;--ink2:#47616a;--ink3:#7a9097;--teal:#0e9f98;--teal2:#08776f;--tealdim:rgba(14,159,152,.13);--ok:#1c8f4c;--warn:#b86e00;--bad:#cf3434;--bad2:#b42a2a;--vio:#6a4bd6;--blue:#1d76c2;--top:color-mix(in srgb,var(--dsw-alias-bg-layer-1,#f4f7f7) 76%,#0e9f98);--stA:color-mix(in srgb,var(--dsw-alias-bg-layer-1,#f4f7f7) 90%,#0e9f98);--stB:color-mix(in srgb,var(--dsw-alias-bg-layer-1,#f4f7f7) 82%,#0e9f98);--stepA:color-mix(in srgb,var(--dsw-alias-bg-layer-1,#f4f7f7) 90%,#0e9f98);--stepB:color-mix(in srgb,var(--dsw-alias-bg-layer-1,#f4f7f7) 83%,#0e9f98);--arrow:#86a3aa;--onteal:#ffffff;color-scheme:light}
+.mo.light .mo-chip.b,.mo.light .mo-err{color:var(--bad2)}.mo.light .mo-st.run{box-shadow:0 0 14px rgba(14,159,152,.22)}
 .mo *{box-sizing:border-box}
 .mo-frame{border:1px solid var(--line);background:var(--panel);border-radius:6px}
-.mo-top{display:flex;align-items:center;gap:12px;padding:8px 14px;background:linear-gradient(90deg,#0f2329,var(--panel) 40%);flex-wrap:wrap}
+.mo-top{display:flex;align-items:center;gap:12px;padding:8px 14px;background:linear-gradient(90deg,var(--top),var(--panel) 40%);flex-wrap:wrap}
 .mo-logo{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#2fd6cd,#138a96);display:grid;place-items:center;flex:none}
 .mo-brand b{display:block;font-size:14px;letter-spacing:2px}.mo-brand span{font-family:var(--mono);font-size:9.5px;color:var(--ink2);letter-spacing:1px}
 .mo-sp{flex:1}
@@ -59,7 +62,7 @@ window.__ModuleLoader__.load({
 .mo-chip{display:inline-block;border-radius:3px;padding:0 6px;font-size:10.5px;line-height:17px;border:1px solid var(--line2);color:var(--ink2);white-space:nowrap;margin-right:4px}
 .mo-chip.t{color:var(--teal2);border-color:rgba(34,199,192,.45);background:var(--tealdim)}
 .mo-chip.w{color:var(--warn);border-color:rgba(245,165,36,.5);background:rgba(245,165,36,.08)}
-.mo-chip.b{color:#ff8a8a;border-color:rgba(240,82,82,.5);background:rgba(240,82,82,.08)}
+.mo-chip.b{color:var(--bad2);border-color:rgba(240,82,82,.5);background:rgba(240,82,82,.08)}
 .mo-chip.ok{color:var(--ok);border-color:rgba(70,209,127,.45);background:rgba(70,209,127,.08)}
 .mo-chip.v{color:var(--vio);border-color:rgba(165,139,255,.45);background:rgba(165,139,255,.08)}
 .mo-chip.bl{color:var(--blue);border-color:rgba(79,179,255,.45);background:rgba(79,179,255,.08)}
@@ -72,9 +75,9 @@ window.__ModuleLoader__.load({
 .mo-input{background:var(--panel2);border:1px solid var(--line2);border-radius:5px;color:var(--ink);padding:5px 8px;font-size:12px;min-width:0}
 .mo-input:focus{outline:none;border-color:var(--teal)}
 .mo-field{display:flex;flex-direction:column;gap:4px;font-size:11.5px;color:var(--ink2)}
-.mo-err{color:#ff9a9a;border:1px solid rgba(240,82,82,.4);background:rgba(240,82,82,.08);padding:6px 10px;border-radius:5px;cursor:pointer}
+.mo-err{color:var(--bad2);border:1px solid rgba(240,82,82,.4);background:rgba(240,82,82,.08);padding:6px 10px;border-radius:5px;cursor:pointer}
 .mo-empty{color:var(--ink3);padding:30px;text-align:center}
-.mo-st{position:relative;flex:1;min-width:110px;border:1px solid var(--line2);border-radius:8px;background:linear-gradient(180deg,#13262d,#0c191e);padding:10px;min-height:124px}
+.mo-st{position:relative;flex:1;min-width:110px;border:1px solid var(--line2);border-radius:8px;background:linear-gradient(180deg,var(--stA),var(--stB));padding:10px;min-height:124px}
 .mo-st .no{font-family:var(--mono);font-size:9.5px;color:var(--ink3);letter-spacing:1px}.mo-st .nm{font-size:14px;font-weight:700;margin:2px 0}
 .mo-st .sub{font-size:10.5px;color:var(--ink3);line-height:14px;min-height:28px}.mo-st .big{font-family:var(--mono);font-size:19px;font-weight:700;margin-top:6px}
 .mo-st .big small{font-size:10px;color:var(--ink3);font-weight:400;margin-left:3px}
@@ -82,13 +85,13 @@ window.__ModuleLoader__.load({
 .mo-st.todo{opacity:.5;border-style:dashed}.mo-st.todo .bar{background:var(--line2)}
 .mo-st.hold{border-color:rgba(245,165,36,.7)}.mo-st.hold .bar{background:var(--warn)}
 .mo-st.run{border-color:var(--teal);box-shadow:0 0 18px rgba(34,199,192,.25)}.mo-st.run .bar{background:var(--teal)}
-.mo-arrow{align-self:center;color:#3a5e69}
+.mo-arrow{align-self:center;color:var(--arrow)}
 .mo-pi{padding:7px 9px;border-radius:5px;cursor:pointer;border:1px solid transparent;margin-bottom:3px}
 .mo-pi:hover{background:var(--panel2)}.mo-pi.on{background:var(--panel3);border-color:var(--line2);box-shadow:inset 3px 0 0 var(--teal)}
 .mo-kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:12px}
 .mo-loop{display:grid;grid-template-columns:repeat(5,minmax(150px,1fr));gap:8px;align-items:stretch}
-.mo-step{border:1px solid var(--line2);border-radius:8px;padding:10px;background:linear-gradient(180deg,#112228,#0c181d);min-width:0;position:relative}
-.mo-step .n{position:absolute;top:-9px;left:10px;background:var(--teal);color:#04201f;border-radius:9px;font-weight:700;font-size:10.5px;padding:0 7px;line-height:17px}
+.mo-step{border:1px solid var(--line2);border-radius:8px;padding:10px;background:linear-gradient(180deg,var(--stepA),var(--stepB));min-width:0;position:relative}
+.mo-step .n{position:absolute;top:-9px;left:10px;background:var(--teal);color:var(--onteal);border-radius:9px;font-weight:700;font-size:10.5px;padding:0 7px;line-height:17px}
 .mo-step h4{margin:4px 0 6px;font-size:12.5px;letter-spacing:1px}
 .mo-item{font-size:12px;line-height:1.55;padding:4px 0;border-top:1px dashed var(--line)}
 .mo-item:first-of-type{border-top:0}
@@ -120,9 +123,52 @@ window.__ModuleLoader__.load({
     const PROV = { 原文写明: 'ok', 结构推出: 'bl', 模型判断: 'v' }
     const provChip = (p) => (p ? h('span', { className: `mo-chip ${PROV[p] ?? ''}`, title: '出处' }, p) : null)
     const reviewChip = (r) => { const s = r?.status ?? '未复核'; return h('span', { className: `mo-chip ${s === '已确认' ? 'ok' : s === '驳回' ? 'b' : s === '已改判' ? 'v' : ''}` }, s) }
-    const KIND_COLOR = { 治疗改变: '#f5a524', 关键流程: '#22c7c0', 有新情况的维持: '#a58bff' }
-    const ROLE_COLOR = { 状态: '#c48bff', 干预: '#2fd6a0', 观测: '#4fb3ff', 判断: '#a58bff', 流程: '#8ba5ad' }
-    const LINE_COLOR = { 长期问题: '#22c7c0', 从属子线: '#7fe9e2', 独立发作: '#f5a524', 并发症: '#f05252', 急性加重: '#ff8a5b' }
+    // SVG 用的颜色（属性里不能用 CSS 变量）：深浅两套，跟随 DSH 主题切换
+    const PALETTES = {
+      dark: { kind: { 治疗改变: '#f5a524', 关键流程: '#22c7c0', 有新情况的维持: '#a58bff' }, role: { 状态: '#c48bff', 干预: '#2fd6a0', 观测: '#4fb3ff', 判断: '#a58bff', 流程: '#8ba5ad' }, line: { 长期问题: '#22c7c0', 从属子线: '#7fe9e2', 独立发作: '#f5a524', 并发症: '#f05252', 急性加重: '#ff8a5b' },
+        grid: '#1a2c34', axis: '#58717a', muted: '#8ba5ad', ink: '#e2eef0', stripe: '#0b171c', stripeOp: 0.6, stay: '#8ba5ad', stayOp: 0.1, edge: '#081116', hi: '#ffffff', bad: '#f05252', warn: '#f5a524', lab: '#4fb3ff', shade: 'rgba(8,17,22,.55)' },
+      light: { kind: { 治疗改变: '#d98a00', 关键流程: '#0e9f98', 有新情况的维持: '#7a5ae0' }, role: { 状态: '#9a5fd6', 干预: '#13a67a', 观测: '#2a83cf', 判断: '#7a5ae0', 流程: '#6f8990' }, line: { 长期问题: '#0e9f98', 从属子线: '#4fbdb5', 独立发作: '#d98a00', 并发症: '#cf3434', 急性加重: '#e0663a' },
+        grid: '#c9d8db', axis: '#6f878e', muted: '#4f6a72', ink: '#14272c', stripe: '#0e9f98', stripeOp: 0.05, stay: '#5f7d85', stayOp: 0.12, edge: '#f4f8f8', hi: '#14272c', bad: '#cf3434', warn: '#b86e00', lab: '#1d76c2', shade: 'rgba(205,220,223,.6)' },
+    }
+    let PAL = PALETTES.dark
+    const KIND_COLOR = {}; const ROLE_COLOR = {}; const LINE_COLOR = {}
+    function usePalette(dark) {
+      PAL = dark ? PALETTES.dark : PALETTES.light
+      Object.assign(KIND_COLOR, PAL.kind); Object.assign(ROLE_COLOR, PAL.role); Object.assign(LINE_COLOR, PAL.line)
+    }
+    usePalette(true)
+
+    /** DSH 当前是否深色：读主题变量 --dsw-alias-bg-base 的亮度（与匿名化插件同法）。 */
+    function hostIsDark(el) {
+      try {
+        let color = getComputedStyle(el ?? document.documentElement).getPropertyValue('--dsw-alias-bg-base').trim()
+        if (!color) color = getComputedStyle(document.body).backgroundColor
+        const probe = document.createElement('span'); probe.style.color = color; document.body.appendChild(probe)
+        const rgb = getComputedStyle(probe).color; probe.remove()
+        const parts = (rgb.match(/[\d.]+/g) ?? []).map(Number)
+        if (parts.length < 3) throw new Error('no colour')
+        if (/rgba\(0, 0, 0, 0\)|transparent/.test(rgb)) throw new Error('transparent')
+        const scale = rgb.startsWith('color(') ? 255 : 1
+        const [r, g, b] = parts
+        return (0.2126 * r + 0.7152 * g + 0.0722 * b) * scale / 255 < 0.5
+      } catch {
+        return window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? true
+      }
+    }
+    function useHostDark(ref) {
+      const [dark, setDark] = useState(() => hostIsDark(null))
+      useEffect(() => {
+        const check = () => setDark(hostIsDark(ref.current?.parentElement ?? null))
+        check()
+        const obs = new MutationObserver(check)
+        obs.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'style', 'data-theme', 'data-color-scheme'] })
+        if (document.body) obs.observe(document.body, { attributes: true, attributeFilter: ['class', 'style', 'data-theme'] })
+        const media = window.matchMedia?.('(prefers-color-scheme: dark)')
+        media?.addEventListener?.('change', check)
+        return () => { obs.disconnect(); media?.removeEventListener?.('change', check) }
+      }, [])
+      return dark
+    }
     const actText = (a) => `${a.action}${a.object ? ` ${a.object}` : ''}`
 
     function Icon({ size = 16 }) {
@@ -143,6 +189,9 @@ window.__ModuleLoader__.load({
       const [showNew, setShowNew] = useState(false)
       const [sel, setSel] = useState(null) // decision id
       const [tick, setTick] = useState(0)
+      const rootRef = React.useRef(null)
+      const dark = useHostDark(rootRef)
+      usePalette(dark)
 
       const refreshList = useCallback(async () => {
         try {
@@ -177,10 +226,10 @@ window.__ModuleLoader__.load({
       const tabs = [['line', '◈ 产线'], ['timeline', '问题列表时间轴'], ['loop', '决策闭环', O?.decisions?.length], ['onto', '本体 人·诊·治·伴·归'], ['review', '复核', review], ['rules', '规则包'], ['report', '报告']]
       const openDecision = (id) => { setSel(id); setTab('loop') }
 
-      return h('div', { className: 'mo' },
+      return h('div', { className: `mo ${dark ? 'dark' : 'light'}`, ref: rootRef },
         h('style', {}, CSS),
         h('div', { className: 'mo-frame mo-top' },
-          h('div', { className: 'mo-logo' }, h('svg', { width: 17, height: 17, viewBox: '0 0 24 24', fill: 'none', stroke: '#04201f', strokeWidth: 2.4, strokeLinecap: 'round' }, h('circle', { cx: 5, cy: 6, r: 2 }), h('circle', { cx: 19, cy: 6, r: 2 }), h('circle', { cx: 12, cy: 18, r: 2.2 }), h('path', { d: 'M6.5 7.6l4.4 8.6M17.5 7.6l-4.4 8.6' }))),
+          h('div', { className: 'mo-logo' }, h('svg', { width: 17, height: 17, viewBox: '0 0 24 24', fill: 'none', stroke: dark ? '#04201f' : '#ffffff', strokeWidth: 2.4, strokeLinecap: 'round' }, h('circle', { cx: 5, cy: 6, r: 2 }), h('circle', { cx: 19, cy: 6, r: 2 }), h('circle', { cx: 12, cy: 18, r: 2.2 }), h('path', { d: 'M6.5 7.6l4.4 8.6M17.5 7.6l-4.4 8.6' }))),
           h('div', { className: 'mo-brand' }, h('b', {}, '临床本体构建'), h('span', {}, 'CLINICAL ONTOLOGY · 以治疗决策为节点')),
           run ? h('div', { style: { lineHeight: 1.35 } }, h('div', {}, statusChip(run.status), h('b', {}, run.inputName)), h('div', { className: 'mo-num mo-faint', style: { fontSize: 10.5 } }, run.id)) : null,
           h('span', { className: 'mo-sp' }),
@@ -297,24 +346,24 @@ window.__ModuleLoader__.load({
       const series = O.timeline.series.slice(0, 4)
       const H = top + rows.length * RH + 14 + series.length * 34 + 10
       const els = []
-      els.push(h('defs', { key: 'defs' }, h('pattern', { id: 'mo-hatch', width: 6, height: 6, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)' }, h('line', { x1: 0, y1: 0, x2: 0, y2: 6, stroke: '#f05252', strokeWidth: 2, opacity: 0.55 }))))
+      els.push(h('defs', { key: 'defs' }, h('pattern', { id: 'mo-hatch', width: 6, height: 6, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)' }, h('line', { x1: 0, y1: 0, x2: 0, y2: 6, stroke: PAL.bad, strokeWidth: 2, opacity: 0.55 }))))
       for (let yr = y0; yr <= y1; yr++) {
         const x = L + (Date.UTC(yr, 0, 1) - A) / (B - A) * (R - L)
-        els.push(h('line', { key: `g${yr}`, x1: x, x2: x, y1: top - 6, y2: H, stroke: '#1a2c34' }))
+        els.push(h('line', { key: `g${yr}`, x1: x, x2: x, y1: top - 6, y2: H, stroke: PAL.grid }))
         const wide = (R - L) / (y1 - y0) > 90
-        if (yr < y1) els.push(h('text', { key: `t${yr}`, x: x + 4, y: 14, fill: '#58717a', fontSize: 10.5, fontFamily: 'SF Mono,Menlo' }, wide ? `${yr}  ${relDay(O.anchor.day, `${yr}-01-01`)}` : String(yr)))
+        if (yr < y1) els.push(h('text', { key: `t${yr}`, x: x + 4, y: 14, fill: PAL.axis, fontSize: 10.5, fontFamily: 'SF Mono,Menlo' }, wide ? `${yr}  ${relDay(O.anchor.day, `${yr}-01-01`)}` : String(yr)))
       }
       for (const s of O.timeline.stays) {
         const x1 = X(s.start); const x2 = X(s.end ?? s.start)
-        els.push(h('rect', { key: `st${s.id}`, x: x1, y: top - 6, width: Math.max(3, x2 - x1), height: rows.length * RH + 8, fill: '#8ba5ad', opacity: 0.1 }, h('title', {}, `住院 ${s.start}～${s.end ?? '?'} ${s.dept ?? ''}`)))
+        els.push(h('rect', { key: `st${s.id}`, x: x1, y: top - 6, width: Math.max(3, x2 - x1), height: rows.length * RH + 8, fill: PAL.stay, opacity: PAL.stayOp }, h('title', {}, `住院 ${s.start}～${s.end ?? '?'} ${s.dept ?? ''}`)))
       }
       rows.forEach(({ l, depth }, i) => {
         const y = top + i * RH; const cy = y + RH / 2
-        const color = LINE_COLOR[l.kind] ?? '#8ba5ad'
-        if (i % 2 === 0) els.push(h('rect', { key: `bg${l.id}`, x: 0, y, width: W, height: RH, fill: '#0b171c', opacity: 0.6 }))
+        const color = LINE_COLOR[l.kind] ?? PAL.muted
+        if (i % 2 === 0) els.push(h('rect', { key: `bg${l.id}`, x: 0, y, width: W, height: RH, fill: PAL.stripe, opacity: PAL.stripeOp }))
         els.push(h('rect', { key: `k${l.id}`, x: 4 + depth * 12, y: y + 6, width: 3, height: RH - 12, rx: 1, fill: color }))
         const label = `${l.code} ${l.kind === '长期问题' || l.kind === '从属子线' ? l.name : `${l.kind} ${l.start?.slice(0, 7) ?? ''}`}`
-        els.push(h('text', { key: `l${l.id}`, x: 12 + depth * 12, y: cy + 4, fill: depth ? '#8ba5ad' : '#e2eef0', fontSize: 11.5, fontWeight: depth ? 400 : 600 }, label.length > 15 ? `${label.slice(0, 15)}…` : label, h('title', {}, `${l.label}（${l.kind}）${l.parentBasis ? `\n归属依据：${l.parentBasis.text}` : ''}`)))
+        els.push(h('text', { key: `l${l.id}`, x: 12 + depth * 12, y: cy + 4, fill: depth ? PAL.muted : PAL.ink, fontSize: 11.5, fontWeight: depth ? 400 : 600 }, label.length > 15 ? `${label.slice(0, 15)}…` : label, h('title', {}, `${l.label}（${l.kind}）${l.parentBasis ? `\n归属依据：${l.parentBasis.text}` : ''}`)))
         if (l.start) {
           const x1 = X(l.start); const x2 = X(l.end ?? l.start)
           if (toT(l.start) < A) els.push(h('path', { key: `lt${l.id}`, d: `M${L - 2} ${cy} l7 -5 v10z`, fill: color, opacity: 0.8 }, h('title', {}, `${l.label}：${l.start} 起（早于时间轴，来自既往史叙述）`)))
@@ -328,12 +377,12 @@ window.__ModuleLoader__.load({
         for (const m of O.lineMembers[l.id] ?? []) {
           if (!m.day) continue
           const x = X(m.day)
-          els.push(h('line', { key: `m${l.id}${m.event}`, x1: x, x2: x, y1: cy - 5, y2: cy + 5, stroke: ROLE_COLOR[m.role] ?? '#8ba5ad', strokeWidth: 1.4, opacity: m.primary ? 0.95 : 0.45 }, h('title', {}, `${m.day} ${m.concept}（${m.role}${m.primary ? '' : '，次线'}）`)))
+          els.push(h('line', { key: `m${l.id}${m.event}`, x1: x, x2: x, y1: cy - 5, y2: cy + 5, stroke: ROLE_COLOR[m.role] ?? PAL.muted, strokeWidth: 1.4, opacity: m.primary ? 0.95 : 0.45 }, h('title', {}, `${m.day} ${m.concept}（${m.role}${m.primary ? '' : '，次线'}）`)))
         }
         for (const d of O.decisions.filter((x) => x.problem === l.id)) {
           const x = X(d.decidedAt); const r = d.isMainLine ? 7 : 5.5
           const on = sel === d.id || hover === d.id
-          els.push(h('path', { key: `d${d.id}`, d: `M${x} ${cy - r} L${x + r} ${cy} L${x} ${cy + r} L${x - r} ${cy} Z`, fill: KIND_COLOR[d.pointKind] ?? '#ccc', stroke: on ? '#fff' : d.formal ? '#081116' : '#f05252', strokeWidth: on ? 2 : 1.2, style: { cursor: 'pointer' },
+          els.push(h('path', { key: `d${d.id}`, d: `M${x} ${cy - r} L${x + r} ${cy} L${x} ${cy + r} L${x - r} ${cy} Z`, fill: KIND_COLOR[d.pointKind] ?? PAL.muted, stroke: on ? PAL.hi : d.formal ? PAL.edge : PAL.bad, strokeWidth: on ? 2 : 1.2, style: { cursor: 'pointer' },
             onClick: () => openDecision(d.id), onMouseEnter: () => setHover(d.id), onMouseLeave: () => setHover(null) },
           h('title', {}, `${d.decidedAt} ${relDay(O.anchor.day, d.decidedAt)} · ${d.pointKind}\n${d.actions.map(actText).join('；')}${d.formal ? '' : `\n不进正式题：${d.notFormalReasons.join('、')}`}\n（点击看决策闭环）`)))
         }
@@ -345,17 +394,17 @@ window.__ModuleLoader__.load({
       for (const s of series) {
         const vs = s.points.map((p) => p.v); const lo = Math.min(...vs); const hi = Math.max(...vs); const hh = 24
         const Y = (v) => sy + hh - (hi === lo ? hh / 2 : (v - lo) / (hi - lo) * hh)
-        els.push(h('text', { key: `sn${s.name}`, x: 12, y: sy + 12, fill: '#4fb3ff', fontSize: 11 }, s.name))
-        els.push(h('text', { key: `sr${s.name}`, x: 12, y: sy + 25, fill: '#58717a', fontSize: 9.5 }, `${lo}–${hi}`))
-        els.push(h('path', { key: `sp${s.name}`, d: s.points.map((p, i) => `${i ? 'L' : 'M'}${X(p.d)} ${Y(p.v)}`).join(''), stroke: '#4fb3ff', strokeWidth: 1.2, fill: 'none', opacity: 0.8 }))
-        s.points.forEach((p, i) => els.push(h('circle', { key: `sc${s.name}${i}`, cx: X(p.d), cy: Y(p.v), r: 2.2, fill: p.flag ? '#f5a524' : '#4fb3ff' }, h('title', {}, `${s.name} ${p.v}${p.flag} · ${p.d}`))))
+        els.push(h('text', { key: `sn${s.name}`, x: 12, y: sy + 12, fill: PAL.lab, fontSize: 11 }, s.name))
+        els.push(h('text', { key: `sr${s.name}`, x: 12, y: sy + 25, fill: PAL.axis, fontSize: 9.5 }, `${lo}–${hi}`))
+        els.push(h('path', { key: `sp${s.name}`, d: s.points.map((p, i) => `${i ? 'L' : 'M'}${X(p.d)} ${Y(p.v)}`).join(''), stroke: PAL.lab, strokeWidth: 1.2, fill: 'none', opacity: 0.8 }))
+        s.points.forEach((p, i) => els.push(h('circle', { key: `sc${s.name}${i}`, cx: X(p.d), cy: Y(p.v), r: 2.2, fill: p.flag ? PAL.warn : PAL.lab }, h('title', {}, `${s.name} ${p.v}${p.flag} · ${p.d}`))))
         sy += 34
       }
       if (asOf) {
         const cx = X(asOf)
-        els.push(h('rect', { key: 'cut', x: cx, y: top - 6, width: Math.max(0, R - cx), height: H - top + 6, fill: 'rgba(8,17,22,.55)', pointerEvents: 'none' }))
-        els.push(h('line', { key: 'cutl', x1: cx, x2: cx, y1: top - 6, y2: H, stroke: '#f5a524', strokeDasharray: '4 3', strokeWidth: 1.4 }))
-        els.push(h('text', { key: 'cutt', x: Math.min(cx + 5, R - 200), y: top + 6, fill: '#f5a524', fontSize: 10.5 }, `截至 ${asOf}：之后写成的记录不可见`))
+        els.push(h('rect', { key: 'cut', x: cx, y: top - 6, width: Math.max(0, R - cx), height: H - top + 6, fill: PAL.shade, pointerEvents: 'none' }))
+        els.push(h('line', { key: 'cutl', x1: cx, x2: cx, y1: top - 6, y2: H, stroke: PAL.warn, strokeDasharray: '4 3', strokeWidth: 1.4 }))
+        els.push(h('text', { key: 'cutt', x: Math.min(cx + 5, R - 200), y: top + 6, fill: PAL.warn, fontSize: 10.5 }, `截至 ${asOf}：之后写成的记录不可见`))
       }
       return h('div', { className: 'mo-frame mo-col', style: { flex: 1, minWidth: 0 } },
         h('div', { style: { padding: '10px 14px 6px', borderBottom: '1px solid var(--line)' } },
@@ -367,8 +416,8 @@ window.__ModuleLoader__.load({
             h('span', {}, '｜'),
             Object.entries(KIND_COLOR).map(([k, c]) => h('span', { key: k }, h('i', { style: { background: c, transform: 'rotate(45deg)' } }), k)),
             h('span', {}, '｜竖线＝挂入的事件（', ...Object.entries(ROLE_COLOR).map(([k, c]) => h('b', { key: k, style: { color: c, fontWeight: 500, margin: '0 2px' } }, k)), '）'),
-            h('span', {}, h('i', { style: { background: '#8ba5ad', opacity: 0.35 } }), '住院'),
-            h('span', {}, h('i', { style: { background: 'repeating-linear-gradient(45deg,#f05252 0 2px,transparent 2px 4px)' } }), '存疑'),
+            h('span', {}, h('i', { style: { background: PAL.stay, opacity: 0.35 } }), '住院'),
+            h('span', {}, h('i', { style: { background: 'repeating-linear-gradient(45deg,var(--bad) 0 2px,transparent 2px 4px)' } }), '存疑'),
             h('span', {}, '红边菱形＝不进正式题'))),
         h('div', { className: 'mo-scroll', style: { flex: 1 } }, h('svg', { viewBox: `0 0 ${W} ${H}`, preserveAspectRatio: 'xMinYMin meet', style: { display: 'block', width: '100%', maxWidth: 1500, height: 'auto' } }, els),
           loose.length ? h('div', { className: 'mo-pad mo-faint' }, '未归线程（就诊层面）的决策点：', loose.map((d) => h('span', { key: d.id, className: 'mo-ev', style: { marginRight: 10 }, onClick: () => openDecision(d.id) }, `${d.decidedAt} ${d.actions.map(actText).join('、')}`))) : null))

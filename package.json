@@ -1,6 +1,6 @@
 {
   "name": "dsh-medical-ontology",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "临床本体构建：患者级病程本体，以治疗决策为节点（问题线、决策闭环、诊断与疾病关系、归因候选）。读入 dsh-medical-event 的事件包，规则为主、可按日期回看。DeepSeek Harness 插件。",
   "type": "module",
   "license": "MIT",
