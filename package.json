@@ -1,0 +1,33 @@
+{
+  "name": "dsh-medical-ontology",
+  "version": "0.0.1",
+  "description": "Placeholder (not yet implemented). Clinical Ontology Builder for DeepSeek Harness: a patient-level disease-course ontology with treatment decisions as nodes, built from medical event packages.",
+  "type": "module",
+  "license": "MIT",
+  "author": "wld007",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wld007/dsh-medical-ontology.git"
+  },
+  "homepage": "https://github.com/wld007/dsh-medical-ontology#readme",
+  "bugs": {
+    "url": "https://github.com/wld007/dsh-medical-ontology/issues"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "cordis",
+    "plugin",
+    "medical",
+    "clinical-ontology",
+    "disease-course",
+    "clinical-decision"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "LICENSE",
+    "README.md"
+  ]
+}
